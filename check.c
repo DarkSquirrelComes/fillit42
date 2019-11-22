@@ -6,7 +6,7 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:53:36 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/22 15:31:06 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/22 16:38:32 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,27 @@ static int	valid_tetrimin(const char *buff)
 {
 	int i;
 	int num;
+	int n_edges;
 
 	i = 0;
 	num = 0;
+	n_edges = 0;
 	while (++i <= 20)
 	{
-		if (i > 0 && i % 5 == 0)
-		{
-			if (buff[i - 1] != '\n')
-				return (-1);
-		}
-		else if (buff[i - 1] != '.' && buff[i - 1] != '#')
+		if (i > 0 && i % 5 == 0 && buff[i - 1] != '\n')
+			return (-1);
+		else if (i % 5 != 0 && buff[i - 1] != '.' && buff[i - 1] != '#')
 			return (-1);
 		else if (buff[i - 1] == '#')
+		{
 			num++;
+			if (i < 20 && buff[i] == '#')
+				n_edges++;
+			if (i + 4 < 20 && buff[i + 4] == '#')
+				n_edges++;
+		}
 	}
-	if (num != 4)
+	if (num != 4 || (n_edges != 3 && n_edges != 4))
 		return (-1);
 	return (0);
 }
