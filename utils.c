@@ -2,6 +2,8 @@
 #include "utils.h"
 #include "tetrimino.h"
 #include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
 
 void		print_map(char **map, int maps_size)
 {
