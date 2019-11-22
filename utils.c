@@ -1,6 +1,5 @@
 #include "fillit.h"
 #include "utils.h"
-#include "tetrimino.h"
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>

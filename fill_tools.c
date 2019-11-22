@@ -1,11 +1,10 @@
 #include "fillit.h"
 #include "utils.h"
-#include "tetrimino.h"
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
 
-int			is_fit(char **map, t_tetrimino t, int x, int y)
+int		**is_fit(char **map, t_tetrimino t, int x, int y, int index)
 {
 	int		i;
 	int		j;
@@ -16,7 +15,9 @@ int			is_fit(char **map, t_tetrimino t, int x, int y)
 		j = -1;
 		while (++j <= t.y)
 			if (map[x + i][y + j] != '.' && t.tetr[i][j] == '#')
-				return (0);
+				return (NULL);
+			if (map[x + i][y + j] == '.' && t.tetr[i][j] == '#')
+				map[x + i][y + j] = 'A' + index;
 	}
 	return (1);
 }
@@ -61,10 +62,9 @@ int			fill_with(char **map, int index, t_tetrimino *t_arr, int maps_size)
 		while (++j <= maps_size - t_arr[index].y)
 		{
 			new_map = map_cpy(map, maps_size);
-			if (is_fit(new_map, t_arr[i]), i, j)
+			if (is_fit(new_map, t_arr[index]), i, j, index)
 				if (fill_with(new_map, index + 1, t_arr, maps_size))
 					return (1);
-
 			map_free(new_map);
 		}
 	}
