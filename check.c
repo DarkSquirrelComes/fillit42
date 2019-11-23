@@ -6,11 +6,17 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:53:36 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/22 16:38:32 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/23 22:58:56 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+int			ft_error(void)
+{
+	write(1, "error\n", 6);
+	return (0);
+}
 
 static int	valid_tetrimin(const char *buff)
 {
@@ -43,36 +49,39 @@ static int	valid_tetrimin(const char *buff)
 
 static int	validation_read(int fd)
 {
-	char	buff[20];
-	int		ret;
+	char		buff[20];
+	int			n_tetr;
+	ssize_t		ret;
 
+	n_tetr = 0;
 	while (1)
 	{
 		if ((ret = read(fd, buff, 20) < 20))
 			return (-1);
 		if ((valid_tetrimin(buff)))
 			return (-1);
+		else
+			n_tetr++;
 		if ((ret = read(fd, buff, 1)) == 0)
-			return (0);
+			return (n_tetr);
 		else if (ret < 0 || buff[0] != '\n')
 			return (-1);
 	}
 }
 
-int			check(int ac, char **av)
+int			num_valid(int ac, char **av)
 {
 	int fd;
+	int n_tetr;
 
 	if (ac != 2)
 	{
 		write(1, "usage: ./fillit input_file\n", 27);
 		return (0);
 	}
-	if ((fd = open(av[1], O_RDONLY)) < 0 || (validation_read(fd)) < 0)
-	{
-		write(1, "error\n", 6);
-		return (0);
-	}
+	if ((fd = open(av[1], O_RDONLY)) < 0 ||
+			(n_tetr = validation_read(fd)) < 0)
+		return (ft_error());
 	close(fd);
-	return (1);
+	return (n_tetr);
 }
