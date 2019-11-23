@@ -14,5 +14,5 @@ void		print_map(char **map, int maps_size)
 		write(1, map[i], maps_size);
 		write(1, "\n", 1);
 	}
-	exit();
+	//exit(0);
 }

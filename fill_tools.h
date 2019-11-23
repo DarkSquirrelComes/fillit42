@@ -8,8 +8,8 @@
 #include <string.h>
 #include <unistd.h>
 
-int			**is_fit(char **map, t_tetrimino t, int x, int y, int index);
+int			**is_fit(char **map, t_tetr t, int x, int y, int index);
 char		**map_cpy(char **map, int maps_size);
 void		map_free(char **map);
-int			fill_with(char **map, int index, t_tetrimino *t_arr, int maps_size);
+int			fill_with(char **map, int index, t_tetr *t_arr, int maps_size);
 #endif
