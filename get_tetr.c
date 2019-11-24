@@ -27,7 +27,12 @@ int		count_y(const char *buff)
 		if (i % 5 != 0)
 		{
 			if (buff[i - 1] == '#')
+			{
 				n++;
+				if ((i > 4 && buff[i] != '#' && buff[i - 5] == '#') ||
+					(i < 14 && buff[i] != '#' && buff[i + 5] == '#'))
+					n++;
+			}
 		}
 		else
 		{
@@ -54,7 +59,12 @@ int		count_x(const char *buff)
 		while (i + j < 19)
 		{
 			if (buff[i + j] == '#')
-				n++;
+            {
+			    n++;
+			    if (((i + j) < 14 && buff[i + j + 5] != '#' && buff[i + j + 4] == '#') ||
+                        ((i + j) < 13 && buff[i + j + 5] != '#' && buff[i + j + 6] == '#'))
+			        n++;
+            }
 			j += 5;
 		}
 		n_max = (n > n_max) ? n : n_max;
@@ -115,8 +125,8 @@ void	prettyfy(char t_map[5][5])
 		}
 	}
 }
-/*
-t_tetr	get_one_tetr(char *buff)
+
+/*t_tetr	get_one_tetr(char *buff)
 {
 	int		i;
 	int		x;
@@ -129,7 +139,7 @@ t_tetr	get_one_tetr(char *buff)
 		my_tetr.tetr[i / 5][i % 5] = '\0';
 	my_tetr.y = count_y(buff);
 	my_tetr.x = count_x(buff);
-	printf("%d %d\n", my_tetr.x, my_tetr.y);
+//	printf("%d %d\n", my_tetr.x, my_tetr.y);
 	start = start_copy_index(buff, my_tetr);
 	i = start;
 	x = 0;
@@ -158,7 +168,7 @@ t_tetr	get_one_tetr(char *buff)
 		my_tetr.tetr[i / 5][i % 5] = '\0';
 	my_tetr.y = count_y(buff);
 	my_tetr.x = count_x(buff);
-	printf("%d %d\n", my_tetr.x, my_tetr.y);
+//	printf("%d %d\n", my_tetr.x, my_tetr.y);
 	start = start_copy_index(buff, my_tetr);
 	i = start;
 	x = -1;
