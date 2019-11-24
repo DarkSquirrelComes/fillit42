@@ -3,11 +3,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <stdio.h>
 
 int		is_fit(char **map, t_tetr t, int x, int y, int index)
 {
 	int		i;
 	int		j;
+
+	//printf("%d %d\n", t.x, t.y);
 
 	i = -1;
 	while (++i < t.x)
@@ -76,5 +79,5 @@ int			fill_with(char **map, int index, t_tetr *t_arr, int maps_size)
 			//map_free(new_map);
 		}
 	}
-	return (1);
+	return (0);
 }

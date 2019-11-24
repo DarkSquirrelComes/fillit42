@@ -15,7 +15,6 @@
 
 int main(int ac, char **av)
 {
-	char		**tetr_map;
 	char		**map;
 	int n_tetr;
 	t_tetr *my_tetr;
@@ -25,22 +24,36 @@ int main(int ac, char **av)
 	if (!(my_tetr = get_tetr(av[1], n_tetr)))
 		return (ft_error());
 
-	int			maps_size = 5;
+	write(1, my_tetr[2].tetr[0], 5);
+	write(1, "\n", 1);
+	write(1, my_tetr[2].tetr[1], 5);
+	write(1, "\n", 1);
+	write(1, my_tetr[2].tetr[2], 5);
+	write(1, "\n", 1);
+	write(1, my_tetr[2].tetr[3], 5);
+	write(1, "\n", 1);
+	write(1, my_tetr[2].tetr[4], 5);
+	write(1, "\n", 1);
+
+	int			maps_size=0;
 	int			i;
 
-	map = malloc(sizeof(char*) * (maps_size + 1));
-	map[maps_size] = NULL;
-	i = -1;
-	while (++i < maps_size)
+	while (++maps_size)
 	{
-		map[i] = malloc(maps_size + 1);
-		map[i][maps_size] = '\0';
-	}
-	map[maps_size] = NULL;
-	for (int i = 0; i < 25; ++i)
-		map[i / 5][i % 5] = '.';
+		map = malloc(sizeof(char*) * (maps_size + 1));
+		map[maps_size] = NULL;
+		i = -1;
+		while (++i < maps_size)
+		{
+			map[i] = malloc(maps_size + 1);
+			map[i][maps_size] = '\0';
+		}
+		map[maps_size] = NULL;
+		for (int i = 0; i < maps_size * maps_size; ++i)
+			map[i / maps_size][i % maps_size] = '.';
 
-	fill_with(map, 0, my_tetr, 5);
+		fill_with(map, 0, my_tetr, maps_size);
+	}	
 	return (0);
 }
 

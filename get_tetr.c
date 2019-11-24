@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include <stdio.h>
 
 int		count_y(const char *buff)
 {
@@ -89,6 +90,32 @@ int		start_copy_index(const char *buff, t_tetr my_tetr)
 	return (j);
 }
 
+void	prettyfy(char t_map[5][5])
+{
+	int	i;
+
+	while (t_map[0][0] == '.' && t_map[0][1] == '.' && t_map[0][2] == '.' && t_map[0][3] == '.')
+	{
+		i = 4;
+		while (i < 16)
+		{
+			t_map[i / 4 - 1][i % 4] = t_map[i / 4][i % 4];
+			t_map[i / 4][i % 4] = '.';
+			++i;
+		}
+	}
+	while (t_map[0][0] == '.' && t_map[1][0] == '.' && t_map[2][0] == '.' && t_map[3][0] == '.')
+	{
+		i = 4;
+		while (i < 16)
+		{
+			t_map[i % 4][i / 4 - 1] = t_map[i % 4][i / 4];
+			t_map[i % 4][i / 4] = '.';
+			++i;
+		}
+	}
+}
+/*
 t_tetr	get_one_tetr(char *buff)
 {
 	int		i;
@@ -102,10 +129,10 @@ t_tetr	get_one_tetr(char *buff)
 		my_tetr.tetr[i / 5][i % 5] = '\0';
 	my_tetr.y = count_y(buff);
 	my_tetr.x = count_x(buff);
+	printf("%d %d\n", my_tetr.x, my_tetr.y);
 	start = start_copy_index(buff, my_tetr);
 	i = start;
 	x = 0;
-	y = 0;
 	while (x < my_tetr.x)
 	{
 		y = -1;
@@ -114,6 +141,34 @@ t_tetr	get_one_tetr(char *buff)
 		x++;
 		i = start + 5 * x;
 	}
+	//prettyfy(my_tetr.tetr);
+	return (my_tetr);
+}*/
+
+t_tetr	get_one_tetr(char *buff)
+{
+	int		i;
+	int		x;
+	int		y;
+	int		start;
+	t_tetr	my_tetr;
+
+	i = -1;
+	while (++i < 25)
+		my_tetr.tetr[i / 5][i % 5] = '\0';
+	my_tetr.y = count_y(buff);
+	my_tetr.x = count_x(buff);
+	printf("%d %d\n", my_tetr.x, my_tetr.y);
+	start = start_copy_index(buff, my_tetr);
+	i = start;
+	x = -1;
+	while (++x < 5)
+	{
+		y = -1;
+		while (++y < 5)
+			my_tetr.tetr[x][y] = buff[5 * x + y];
+	}
+	prettyfy(my_tetr.tetr);
 	return (my_tetr);
 }
 
