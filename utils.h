@@ -6,7 +6,7 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:10:31 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/25 19:16:01 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:38:59 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@
 
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);
-void		print_map(char **map, int maps_size);
+void	print_map(char **map, int maps_size);
 #endif
