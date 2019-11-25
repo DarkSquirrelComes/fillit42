@@ -20,7 +20,7 @@ void	solving(t_tetr *my_tetr, int n_tetr)
 	int			maps_size;
 	int			i;
 
-	maps_size = my_sqrt(4 * n_tetr);
+	maps_size = my_sqrt(4 * n_tetr) - 1;
 	while (++maps_size)
 	{
 		map = malloc(sizeof(char*) * (maps_size + 1));

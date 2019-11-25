@@ -21,7 +21,7 @@ int			my_sqrt(int x)
 	int		res;
 
 	res = 0;
-	while (res < x)
+	while (res * res < x)
 		++res;
 	return (res);
 }
