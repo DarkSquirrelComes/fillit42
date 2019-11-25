@@ -6,16 +6,16 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:53:36 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/25 19:52:03 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:58:43 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int			ft_error(void)
+void		ft_error(void)
 {
 	write(1, "error\n", 6);
-	return (0);
+	exit(0);
 }
 
 static int	valid_tetrimin(const char *buff)
@@ -81,7 +81,7 @@ int			num_valid(int ac, char **av)
 	}
 	if ((fd = open(av[1], O_RDONLY)) < 0 ||
 			(n_tetr = validation_read(fd)) < 0 || n_tetr > 26)
-		return (ft_error());
+		ft_error();
 	close(fd);
 	return (n_tetr);
 }
