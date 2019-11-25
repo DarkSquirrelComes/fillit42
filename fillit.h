@@ -6,7 +6,7 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:39:16 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/23 19:20:12 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/25 18:34:58 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,12 @@ typedef struct	s_tetr
 {
 	int			x;
 	int			y;
+	int			index;
 	char		tetr[5][5];
 }				t_tetr;
 
 int				num_valid(int ac, char **av);
-int 			ft_error(void);
+int				ft_error(void);
 t_tetr			*get_tetr(char *file, int n_tetr);
 
 #endif

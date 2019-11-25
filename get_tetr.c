@@ -6,14 +6,13 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/23 16:45:14 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/23 22:58:26 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/25 18:36:05 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 
-int		count_y(const char *buff)
+static int		count_y(const char *buff)
 {
 	int i;
 	int n;
@@ -24,17 +23,14 @@ int		count_y(const char *buff)
 	i = 0;
 	while (++i <= 20)
 	{
-		if (i % 5 != 0)
+		if (i % 5 != 0 && buff[i - 1] == '#')
 		{
-			if (buff[i - 1] == '#')
-			{
+			n++;
+			if ((i > 4 && buff[i] != '#' && buff[i - 5] == '#') ||
+				(i < 14 && buff[i] != '#' && buff[i + 5] == '#'))
 				n++;
-				if ((i > 4 && buff[i] != '#' && buff[i - 5] == '#') ||
-					(i < 14 && buff[i] != '#' && buff[i + 5] == '#'))
-					n++;
-			}
 		}
-		else
+		else if (i % 5 == 0)
 		{
 			n_max = (n > n_max) ? n : n_max;
 			n = 0;
@@ -43,7 +39,7 @@ int		count_y(const char *buff)
 	return (n_max);
 }
 
-int		count_x(const char *buff)
+static int		count_x(const char *buff)
 {
 	int i;
 	int j;
@@ -59,12 +55,12 @@ int		count_x(const char *buff)
 		while (i + j < 19)
 		{
 			if (buff[i + j] == '#')
-            {
-			    n++;
-			    if (((i + j) < 14 && buff[i + j + 5] != '#' && buff[i + j + 4] == '#') ||
-                        ((i + j) < 13 && buff[i + j + 5] != '#' && buff[i + j + 6] == '#'))
-			        n++;
-            }
+			{
+				n++;
+				if ((i + j) < 14 && buff[i + j + 5] != '#' &&
+					(buff[i + j + 4] == '#' || buff[i + j + 6] == '#'))
+					n++;
+			}
 			j += 5;
 		}
 		n_max = (n > n_max) ? n : n_max;
@@ -72,39 +68,12 @@ int		count_x(const char *buff)
 	return (n_max);
 }
 
-int		start_copy_index(const char *buff, t_tetr my_tetr)
-{
-	int i;
-	int j;
-	int row;
-	int col;
-
-	i = 0;
-	while (i < 20 && buff[i] != '#')
-		i++;
-	row = i;
-	col = 0;
-	i = -1;
-	while (++i < 4)
-	{
-		j = 0;
-		while (i + j < 19)
-		{
-			col = i + j;
-			if (buff[i + j] == '#')
-				i = 19;
-			j += 5;
-		}
-	}
-	j = (row == col) ? row : (col - (my_tetr.x - 1) * 5);
-	return (j);
-}
-
-void	prettyfy(char t_map[5][5])
+static void		prettyfy(char t_map[5][5])
 {
 	int	i;
 
-	while (t_map[0][0] == '.' && t_map[0][1] == '.' && t_map[0][2] == '.' && t_map[0][3] == '.')
+	while (t_map[0][0] == '.' && t_map[0][1] == '.'
+			&& t_map[0][2] == '.' && t_map[0][3] == '.')
 	{
 		i = 4;
 		while (i < 16)
@@ -114,7 +83,8 @@ void	prettyfy(char t_map[5][5])
 			++i;
 		}
 	}
-	while (t_map[0][0] == '.' && t_map[1][0] == '.' && t_map[2][0] == '.' && t_map[3][0] == '.')
+	while (t_map[0][0] == '.' && t_map[1][0] == '.'
+			&& t_map[2][0] == '.' && t_map[3][0] == '.')
 	{
 		i = 4;
 		while (i < 16)
@@ -126,51 +96,15 @@ void	prettyfy(char t_map[5][5])
 	}
 }
 
-/*t_tetr	get_one_tetr(char *buff)
+static t_tetr	get_one_tetr(char *buff, int index)
 {
-	int		i;
 	int		x;
 	int		y;
-	int		start;
 	t_tetr	my_tetr;
 
-	i = -1;
-	while (++i < 25)
-		my_tetr.tetr[i / 5][i % 5] = '\0';
 	my_tetr.y = count_y(buff);
 	my_tetr.x = count_x(buff);
-//	printf("%d %d\n", my_tetr.x, my_tetr.y);
-	start = start_copy_index(buff, my_tetr);
-	i = start;
-	x = 0;
-	while (x < my_tetr.x)
-	{
-		y = -1;
-		while (++y < my_tetr.y)
-			my_tetr.tetr[x][y] = buff[i++];
-		x++;
-		i = start + 5 * x;
-	}
-	//prettyfy(my_tetr.tetr);
-	return (my_tetr);
-}*/
-
-t_tetr	get_one_tetr(char *buff)
-{
-	int		i;
-	int		x;
-	int		y;
-	int		start;
-	t_tetr	my_tetr;
-
-	i = -1;
-	while (++i < 25)
-		my_tetr.tetr[i / 5][i % 5] = '\0';
-	my_tetr.y = count_y(buff);
-	my_tetr.x = count_x(buff);
-//	printf("%d %d\n", my_tetr.x, my_tetr.y);
-	start = start_copy_index(buff, my_tetr);
-	i = start;
+	my_tetr.index = index;
 	x = -1;
 	while (++x < 5)
 	{
@@ -182,7 +116,7 @@ t_tetr	get_one_tetr(char *buff)
 	return (my_tetr);
 }
 
-t_tetr	*get_tetr(char *file, int n_tetr)
+t_tetr			*get_tetr(char *file, int n_tetr)
 {
 	int		i;
 	int		fd;
@@ -198,7 +132,7 @@ t_tetr	*get_tetr(char *file, int n_tetr)
 	{
 		if ((ret = read(fd, buff, 20) < 0))
 			return (0);
-		res[i] = get_one_tetr(buff);
+		res[i] = get_one_tetr(buff, i);
 		if (i < n_tetr - 1)
 			if ((ret = read(fd, buff, 1)) < 0)
 				return (0);

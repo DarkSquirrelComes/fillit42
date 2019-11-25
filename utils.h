@@ -1,7 +1,18 @@
-#ifndef UTILS_H
-#define UTILS_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/11/25 18:10:31 by akittie           #+#    #+#             */
+/*   Updated: 2019/11/25 18:10:54 by akittie          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-//# include "libft.h"
+#ifndef UTILS_H
+# define UTILS_H
+
 # include <fcntl.h>
 # include <unistd.h>
 # include <sys/types.h>

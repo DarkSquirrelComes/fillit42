@@ -6,9 +6,11 @@
 #    By: akittie <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/11/25 18:41:55 by akittie           #+#    #+#              #
-#    Updated: 2019/11/25 20:31:17 by akittie          ###   ########.fr        #
+#    Updated: 2019/11/25 18:19:13 by akittie          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+.PHONY: all $(NAME) clean fclean re
 
 NAME = fillit
 
@@ -22,8 +24,6 @@ OBJ = $(subst .c,.o,$(SRC))
 
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
-
-.PHONY: all $(NAME) clean fclean re
 
 all: $(NAME)
 
