@@ -6,7 +6,7 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:06:02 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/25 18:51:52 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:27:43 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char		**map_cpy(char **map, int maps_size)
 	res[maps_size] = NULL;
 	i = -1;
 	while (++i < maps_size)
-		res[i] = strdup(map[i]);
+		res[i] = ft_strdup(map[i]);
 	return (res);
 }
 
@@ -66,7 +66,7 @@ void		map_free(char ***m, int map_size)
 		free(map[i]);
 		map[i++] = 0;
 	}
-	free(m);
+	free(*m);
 }
 
 int			fill_with(char **map, int index, t_tetr *t_arr, int maps_size)
@@ -78,6 +78,7 @@ int			fill_with(char **map, int index, t_tetr *t_arr, int maps_size)
 	if (t_arr[index].x == -1)
 	{
 		print_map(map, maps_size);
+		map_free(&map, maps_size);
 		exit(0);
 	}
 	i = -1;

@@ -1,25 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/25 18:10:31 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/25 19:16:01 by akittie          ###   ########.fr       */
+/*   Created: 2019/09/05 18:09:20 by akittie           #+#    #+#             */
+/*   Updated: 2019/11/25 19:15:19 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "utils.h"
 
-# include <fcntl.h>
-# include <unistd.h>
-# include <sys/types.h>
-# include <sys/uio.h>
-# include <stdlib.h>
+size_t	ft_strlen(const char *s)
+{
+	size_t i;
 
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s1);
-void		print_map(char **map, int maps_size);
-#endif
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
