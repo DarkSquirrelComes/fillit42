@@ -12,14 +12,15 @@
 
 #include "fillit.h"
 #include "fill_tools.h"
+#include "utils.h"
 
-void	solving(t_tetr *my_tetr)
+void	solving(t_tetr *my_tetr, int n_tetr)
 {
 	char		**map;
 	int			maps_size;
 	int			i;
 
-	maps_size = 0;
+	maps_size = my_sqrt(4 * n_tetr);
 	while (++maps_size)
 	{
 		map = malloc(sizeof(char*) * (maps_size + 1));
@@ -50,6 +51,6 @@ int		main(int ac, char **av)
 		return (0);
 	if (!(my_tetr = get_tetr(av[1], n_tetr)))
 		return (ft_error());
-	solving(my_tetr);
+	solving(my_tetr, n_tetr);
 	return (0);
 }

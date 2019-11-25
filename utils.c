@@ -16,6 +16,46 @@
 #include <string.h>
 #include <unistd.h>
 
+int			my_sqrt(int x)
+{
+	int		res;
+
+	res = 0;
+	while (res < x)
+		++res;
+	return (res);
+}
+
+char	*ft_strdup(const char *s1)
+{
+	char	*s2;
+	size_t	len;
+	size_t	i;
+
+	i = 0;
+	len = ft_strlen(s1);
+	s2 = (char *)malloc(len + 1);
+	if (s2 == NULL)
+		return (NULL);
+	while (i < len)
+	{
+		s2[i] = s1[i];
+		i++;
+	}
+	s2[len] = '\0';
+	return (s2);
+}
+
+size_t	ft_strlen(const char *s)
+{
+	size_t i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}
+
 void		print_map(char **map, int maps_size)
 {
 	int		i;

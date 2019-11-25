@@ -19,7 +19,8 @@
 # include <sys/uio.h>
 # include <stdlib.h>
 
-size_t	ft_strlen(const char *s);
-char	*ft_strdup(const char *s1);
+size_t		ft_strlen(const char *s);
+char		*ft_strdup(const char *s1);
 void		print_map(char **map, int maps_size);
+int			my_sqrt(int x);
 #endif
