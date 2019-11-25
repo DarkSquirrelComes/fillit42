@@ -6,7 +6,7 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:48:11 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/25 18:53:19 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/25 18:58:57 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ int		main(int ac, char **av)
 	int			n_tetr;
 	t_tetr		*my_tetr;
 
-	if ((n_tetr = num_valid(ac, av)) <= 0)
+	if ((n_tetr = num_valid(ac, av)) <= 0 || n_tetr > 26)
 		return (0);
 	if (!(my_tetr = get_tetr(av[1], n_tetr)))
 		return (ft_error());
