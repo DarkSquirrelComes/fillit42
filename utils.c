@@ -6,7 +6,7 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:08:41 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/25 18:09:01 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:54:13 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			my_sqrt(int x)
 	return (res);
 }
 
-char	*ft_strdup(const char *s1)
+char		*ft_strdup(const char *s1)
 {
 	char	*s2;
 	size_t	len;
@@ -46,7 +46,7 @@ char	*ft_strdup(const char *s1)
 	return (s2);
 }
 
-size_t	ft_strlen(const char *s)
+size_t		ft_strlen(const char *s)
 {
 	size_t i;
 

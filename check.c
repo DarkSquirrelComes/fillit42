@@ -6,7 +6,7 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/22 13:53:36 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/23 22:58:56 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/25 19:52:03 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int			num_valid(int ac, char **av)
 		return (0);
 	}
 	if ((fd = open(av[1], O_RDONLY)) < 0 ||
-			(n_tetr = validation_read(fd)) < 0)
+			(n_tetr = validation_read(fd)) < 0 || n_tetr > 26)
 		return (ft_error());
 	close(fd);
 	return (n_tetr);
