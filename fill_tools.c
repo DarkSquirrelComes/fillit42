@@ -6,7 +6,7 @@
 /*   By: akittie <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:06:02 by akittie           #+#    #+#             */
-/*   Updated: 2019/11/25 19:27:43 by akittie          ###   ########.fr       */
+/*   Updated: 2019/11/25 20:13:09 by akittie          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,15 @@ char		**map_cpy(char **map, int maps_size)
 	int		i;
 	char	**res;
 
-	res = malloc(sizeof(char*) * (maps_size + 1));
+	if (!(res = malloc(sizeof(char*) * (maps_size + 1))))
+		ft_error();
 	res[maps_size] = NULL;
 	i = -1;
 	while (++i < maps_size)
-		res[i] = ft_strdup(map[i]);
+	{
+		if (!(res[i] = ft_strdup(map[i])))
+			ft_error();
+	}
 	return (res);
 }
 
